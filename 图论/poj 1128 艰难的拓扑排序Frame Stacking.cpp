@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
+#include <string.h>
 using namespace std;
 vector<char>end;
 struct point
@@ -10,7 +11,7 @@ struct point
 };
 char v[31][31], v1[27], v2[27][27];
 int h, w, flag[27], sum;
-void dfs(int flag[])
+void dfs(int    flag[])
 {
     int i, j, k;
     if (end.size() == sum)
@@ -114,3 +115,4 @@ int main()
     }
     return 0;
 }
+// 上东方饭店

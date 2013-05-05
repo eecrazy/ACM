@@ -33,6 +33,7 @@ void merge(int x, int y)
     int a = find(x), b = find(y);
     if (a != b)
     {
+        
         set[a] = b;
     }
 }
