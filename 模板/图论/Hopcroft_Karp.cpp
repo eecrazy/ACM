@@ -1,5 +1,4 @@
-// 二分图最大匹配: Hopcroft_Karp算法，复杂度: O(n^2.5).
-
+// 二分图最大匹配: Hopcroft_Karp算法，复杂度: O(n^2.5).前向星存图
 // 用BFS找多条增广路，用distx, disty来记录下一个点，用DFS来遍历这些增广路.
 #include <iostream>
 using namespace std;
@@ -38,13 +37,13 @@ inline bool BFS()
     bool flag(0);
     int h,t;
     memset(distx,0,sizeof(distx));
-memset(disty,0,sizeof(disty));
+    memset(disty,0,sizeof(disty));
     h=t=0;
     for(i=1;i<=nx;++i)
         if(cx[i]==-1)que[t++]=i;
     for(;h!=t;++h)
     {
-i=que[h];
+        i=que[h];
         for(k=first[i];k!=-1;k=edge[k].next)
         {
             j=edge[k].b;

@@ -1,38 +1,50 @@
-#include<iostream>
+//DFS找增广路，速度慢。O(nm)二分图最大匹配。
+#include <iostream>
 using namespace std;
-int p[100];//
-int f[100][100];//图
-bool b[100];//点是否已用
-int n,m;
-bool path(int x)
+#define maxn 300//顶点个数
+bool map[maxn][maxn];//存图
+bool mark[maxn];//寻找增广路时的标志数组
+int nx,ny;//A,B集合中的点数
+int cx[maxn],cy[maxn];//匹配到的顶点序号
+
+int findpath(int u)
 {
-    int i;
-    for(i=1; i<=m; i++)
-        if(!b[i]&&f[x][i])
+    int i,j;
+    for (int i = 0; i < ny; ++i)
+    {
+        if (map[u][i]&&!mark[i])        
         {
-            b[i]=1;
-            if(p[i]==0||path(p[i]))
+            mark[i]=1;
+            if (cy[i]==-1||findpath(cy[i]))
             {
-                p[i]=x;
-                return true;
-            }
+                    cy[i]=u;
+                    cx[u]=i;
+                    return 1;
+            }    
         }
-    return false;
+    }
+    return 0;
+}
+
+int maxmatch()
+{
+    int ans=0,i,j;
+    for (int i = 0; i < nx; ++i)
+        cx[i]=-1;
+    for (int i = 0; i < ny; ++i)
+        cy[i]=-1;
+    for (int i = 0; i < nx; ++i)
+    {
+        if (cx[i]==-1)
+        {
+            for (int j = 0; j < ny; ++j)
+                mark[j]=0;
+            ans+=findpath(i);
+        }
+    }
+    return ans;
 }
 int main()
 {
-    int ans,x,y,i;
-    cin>>n>>m;
-    memset(f,0,sizeof(f));
-    while(cin>>x>>y&&x+y>0) f[x][y]=1;
 
-    ans=0;
-    memset(p,0,sizeof(p));
-    for(i=1; i<=n; i++)
-    {
-        memset(b,0,sizeof(b));
-        if(path(i)) ans++;
-    }
-    cout<<ans<<endl;
-    return 0;
 }

@@ -1,6 +1,6 @@
 const int maxn=1010;
 vector<int> edge[maxn];
-vector<vector <int>>connect;
+vector<vector<int>>connect;
 int dfn[maxn],low[manx],in_seq[maxn];
 int stack[maxn],list[maxn];
 int cnt,top,pop,len;

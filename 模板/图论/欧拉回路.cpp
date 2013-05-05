@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <algorithm>
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<algorithm>
 using namespace std;
 int e[2000][2];                                                              //e[i][0],e[i][1]分别存放编号为i的街道的两个交点
 int degree[50];                                                             //存放顶点的度数
