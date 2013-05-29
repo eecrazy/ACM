@@ -1,14 +1,7 @@
 /*hdu 2815 Mod Tree pku 3243 Clever Y
 扩展Baby Step Giant Step
 
-Baby Step Giant Step： A^X=B(mod C); C为素数。
-
-如果C没有限制就变成扩展Baby Step Giant Step。
-
-参照大牛博客：http://hi.baidu.com/aekdycoin/item/236937318413c680c2cf29d4
-
-实在是太弱了，没用二分，写了一个hash竟然超时，最后还是copy了一个hash。*/
-// 这个模板是最好的额！！
+Baby Step Giant Step： A^X=B(mod C); C为素数。*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

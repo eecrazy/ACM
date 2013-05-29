@@ -1,5 +1,4 @@
 #include <cstdio>
-
 void exgcd(long long a,long long b,long long &d,long long &x,long long &y)
 {
 	if(!b)

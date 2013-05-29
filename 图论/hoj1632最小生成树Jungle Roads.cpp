@@ -9,7 +9,6 @@ int map[maxn][maxn];
 int visit[maxn],dis[maxn];
 int sum;
 int n;
-
 void  prim()
 {
     for(int i=2;i<=n;i++)
