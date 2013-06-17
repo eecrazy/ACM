@@ -118,7 +118,7 @@ struct node
             ppre  =  ppre->pf;
         }
     }
-}
+};
 node ltree[MAX];
 int main()
 {
