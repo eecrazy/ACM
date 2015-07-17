@@ -16,7 +16,7 @@ int degree[MAX_JUNCTION];
 int start, n, m, top, stack[MAX];
 void init()
 {
-    for(int i=0;i<MAX_JUNCTION;i++)degree[i]=0;
+    for (int i = 0; i < MAX_JUNCTION; i++)degree[i] = 0;
     start = 0, n = 0, m = 0, top = 0;
     for (int i = 0; i < MAX; i++)
         street[i].visited = false;
@@ -41,42 +41,43 @@ void DFS(int v)//递归遍历这条路。这里让定点序最小的技巧很好
         }
     }
 }
-int max(int x,int y)
+int max(int x, int y)
 {
-    if(x>=y)return x;
+    if (x >= y)return x;
     return y;
 }
-int min(int x,int y)
+int min(int x, int y)
 {
-    if(x<=y)return x;
+    if (x <= y)return x;
     return y;
 }
 int main()
 {
     int x, y, z;
-    while (scanf("%d%d",&x,&y)!=EOF&& !(x == 0 && y == 0))
+    while (scanf("%d%d", &x, &y) != EOF && !(x == 0 && y == 0))
     {
         init();//初始化
         do
         {
-            if (start == 0)start=min(x,y);
-            scanf("%d",&z);
+            if (start == 0)start = min(x, y);
+            scanf("%d", &z);
             n++;
             m = max(m, max(x, y));
             degree[x]++, degree[y]++;
             street[z].junc1 = x, street[z].junc2 = y;
-        }while (scanf("%d%d",&x,&y)!=EOF&& !(x == 0 && y == 0));
+        }
+        while (scanf("%d%d", &x, &y) != EOF && !(x == 0 && y == 0));
         if (isEuler())
         {
             DFS(start);
             for (int i = top - 1; i >= 0; i--)
             {
-                printf("%d",stack[i]);
+                printf("%d", stack[i]);
                 if (i != 0)printf(" ");
             }
             printf("\n");
         }
         else
-        printf("Round trip does not exist.\n");
+            printf("Round trip does not exist.\n");
     }
 }
