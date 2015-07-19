@@ -1,0 +1,109 @@
+#include <iostream>
+using namespace std;
+#include <map>
+#include <vector>
+
+
+class LRUCache {
+public:
+	LRUCache(int capacity) : max_num(capacity), cur(0) {}
+
+	int get(int key) {
+		// print_list();
+		map<int, int>::iterator it;
+		it = cache.find(key);
+		if (it != cache.end())
+		{
+			// 将访问元素放在最前
+			reorder( key);
+			return it->second;
+		}
+		return -1;
+	}
+	void set(int key, int value) {
+		// print_list();
+		map<int, int>::iterator it;
+		it = cache.find(key);
+		// 成功找到元素，将访问元素放在最前
+		if (it != cache.end())
+		{
+			cache[key] = value;
+			reorder(key);
+		}
+		else//没有找到，新插入，
+		{
+			// cout << key << endl;
+			if (cur < max_num) //可以插入新的元素
+			{
+				// printf("a\n");
+				cur++;
+				insert_head(key);
+				cache[key] = value;
+
+			}
+			else//删除一个元素，插入新的元素
+			{
+				// printf("b\n");
+				int a = delete_tail();
+				insert_head(key);
+				it = cache.find(a);
+				if (it != cache.end())
+					cache.erase(it);
+				cache[key] = value;
+				// cout << cache.size() << endl;
+			}
+		}
+	}
+	void print_list()
+	{
+		vector<int>::iterator it;
+		cout << "print_list:";
+		for (it = head.begin(); it != head.end(); ++it)
+		{
+			cout << *it << " ";
+		}
+		cout << endl;
+
+	}
+	void reorder(int key)
+	{
+		vector<int>::iterator it;
+		for (it = head.begin(); it != head.end(); ++it)
+		{
+			if (*it == key)
+			{	head.erase(it);
+				break;
+			}
+		}
+		head.insert(head.begin(), key);
+	}
+	void insert_head(int key)
+	{
+		vector<int>::iterator it = head.begin();
+		head.insert(it, key);
+	}
+	int delete_tail()
+	{
+		int a = head.back();
+		head.erase(head.end() - 1);
+		return a;
+	}
+
+private:
+	int max_num;
+	map<int, int> cache;
+	int cur;
+	vector<int> head;
+
+};
+
+int main()
+{
+	LRUCache a(2);
+	a.set(2, 1);
+	a.set(1, 1);
+	cout << a.get(2) << endl;
+	a.set(4, 1);
+	cout << a.get(1) << endl;
+	cout << a.get(2) << endl;
+}
