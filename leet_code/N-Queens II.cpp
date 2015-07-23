@@ -7,11 +7,11 @@ using namespace std;
 
 class Solution {
 public:
-	vector<vector<string> > solveNQueens(int n) {
+	int totalNQueens(int n) {
 		q_num = 1;
 		sum = 0;
 		pro(n);
-		return a;
+		return sum;
 	}
 	void pro(int n)
 	{
@@ -22,22 +22,7 @@ public:
 				queen_pos[q_num] = i;
 				if (q_num == n)
 				{
-					vector<string> v;
-					for (int i = 1; i <= n; i++)
-					{
-
-						string s = "";
-						for (int j = 1; j <= n; j++)
-						{
-
-							if (queen_pos[i] == j)
-								s += "Q";
-							else
-								s += ".";
-						}
-						v.push_back(s);
-					}
-					a.push_back(v);
+					// my_print(n);
 					sum++;
 					return ;
 				}
@@ -61,21 +46,14 @@ public:
 		}
 		return 1;
 	}
-	vector<vector<string> > a;
 	int queen_pos[15];
 	int q_num ;
 	int sum ;
-
 };
+
 int main()
 {
 	Solution a;
-	vector<vector<string> > b = a.solveNQueens(12);
-	for (int i = 0; i < b.size(); i++)
-	{
-		for (int j = 0; j < b[i].size(); j++)
-			cout << b[i][j] << endl;
-		cout << endl;
-	}
-	printf("%d\n", a.sum );
+	int b = a.totalNQueens(4);
+	printf("%d\n", b );
 }
